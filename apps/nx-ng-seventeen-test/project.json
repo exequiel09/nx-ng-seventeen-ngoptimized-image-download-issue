@@ -1,0 +1,85 @@
+{
+  "name": "nx-ng-seventeen-test",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "nx-ng-seventeen-test",
+  "sourceRoot": "apps/nx-ng-seventeen-test/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/nx-ng-seventeen-test",
+        "index": "apps/nx-ng-seventeen-test/src/index.html",
+        "browser": "apps/nx-ng-seventeen-test/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/nx-ng-seventeen-test/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/nx-ng-seventeen-test/src/favicon.ico",
+          "apps/nx-ng-seventeen-test/src/assets"
+        ],
+        "styles": ["apps/nx-ng-seventeen-test/src/styles.scss"],
+        "scripts": [],
+        "server": "apps/nx-ng-seventeen-test/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/nx-ng-seventeen-test/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "nx-ng-seventeen-test:build:production"
+        },
+        "development": {
+          "buildTarget": "nx-ng-seventeen-test:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "nx-ng-seventeen-test:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/nx-ng-seventeen-test/jest.config.ts"
+      }
+    }
+  }
+}
