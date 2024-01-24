@@ -1,10 +1,9 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [NgOptimizedImage],
   selector: 'nx-ng-seventeen-test-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
